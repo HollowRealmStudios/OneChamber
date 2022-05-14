@@ -6,39 +6,41 @@ import org.java_websocket.WebSocket;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-import java.net.Socket;
-import java.util.UUID;
+import java.io.Serializable;
 
-public class Player {
+public class Player implements Serializable {
 
-    @Getter
-    private final WebSocket socket;
-    @Getter
-    private final UUID uuid = UUID.randomUUID();
-    @Getter
-    private String name;
-    @Getter
-    private Point2D startPosition;
-    @Getter
-    @Setter
-    private Point2D.Float currentPosition;
-    @Getter
-    @Setter
-    private int score = 0;
-    @Getter
-    @Setter
-    private boolean hasBullet = true;
-    @Getter
-    private boolean isAlive = true;
-    @Getter
-    @Setter
-    private Ellipse2D.Float hitbox;
+	@Getter
+	private final transient WebSocket socket;
+	@Setter
+	@Getter
+	private String name;
+	@Getter
+	@Setter
+	private Point2D.Float startPosition;
+	@Getter
+	@Setter
+	private Point2D.Float currentPosition;
+	@Getter
+	@Setter
+	private int score = 0;
+	@Getter
+	@Setter
+	private boolean hasBullet = true;
+	@Getter
+	private boolean isAlive = true;
+	@Getter
+	@Setter
+	private Ellipse2D.Float hitbox;
+	@Getter
+	@Setter
+	private Player killer;
 
-    public Player(WebSocket socket) {
-        this.socket = socket;
-    }
+	public Player(WebSocket socket) {
+		this.socket = socket;
+	}
 
-    public void kill() {
-        this.isAlive = false;
-    }
+	public void kill() {
+		this.isAlive = false;
+	}
 }

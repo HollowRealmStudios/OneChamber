@@ -4,11 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class PlayerMoveMessage implements Message {
+public class PlayerMoveMessage extends Message implements Serializable {
 
-    private Point2D.Float newPosition;
+    private final Point2D.Float newPosition;
 
 }
